@@ -1,0 +1,25 @@
+ <!DOCTYPE html>
+ 
+ <?php
+	$cookie_name="user";
+	$cookie_value=null;
+	setcookie($cookie_name, $cookie_value, time() + 86400, "/");
+ ?>
+ 
+ <html>
+ <body>
+
+ <?php
+	if(!isset($_COOKIE["user"]) || $_COOKIE["user"] == null) {
+		//user login stuff here
+		require 'userLogin.php';
+		$cookie_value=$user;
+		setcookie($cookie_name, $cookie_value, time() + 86400, "/");
+	 } else {
+		$loginUser = $_COOKIE["user"];
+		//display user stuff here
+	}
+	?>
+ 
+ </body>
+ </html>

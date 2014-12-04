@@ -1,8 +1,21 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+<head><h3>Home Page</h3>
 <body>
 
-<h1>Welcome to my site!</h1>
+<?php
+if(!isset($_COOKIE["user"]) || $_COOKIE["user"] == null) {
+	<a href="user">User Login</a>
+	} else {
+	<a href="user">User $COOKIE["user"] Info</a>
+	}
+?>
+<br><br>
+<form action="homeSearch.php" method="post">
+Search: <input type = "text" name="search"><br>
+Song: <input type = "radio" name="type" value="song">   Artist: <input type = "radio" name="type" value="artist">   Album: <input type = "radio" name="type" value="album"><br>
+<input type="submit">
+</form>
 
 </body>
 </html> 
