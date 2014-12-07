@@ -1,4 +1,5 @@
 #!/usr/local/bin/php
+<!-- userLoginLogic gets passed through POST 'userName' and 'userPass' -->
  
  <?php
 	$cookie_name="user";
@@ -12,7 +13,7 @@
 <?php if(isset($_COOKIE["user"]) && $_COOKIE["user"] !== null): ?>
 	<p>User already logged in</p>
 <?php else: ?>
-	<form action="userLogin.php" method="post">
+	<form action="userLoginLogic.php" method="post">
 	Username: <input type = "text" name="userName"><br>
 	Password: <input type = "password" name="userPass"><br>
 	<input type="submit">
