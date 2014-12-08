@@ -9,15 +9,17 @@
 	{
 		$search = "% " . $_POST["searchText"] . " %"; //No partial-word matches
 		//echo $search . "<br><br>";
-		$query; $fetch; $syntax;
+		$query; $fetch;
 		putenv("ORACLE_HOME=/usr/local/libexec/oracle11g-client");
 		$conn = ocilogon("lorelle", $_POST["dbPass"], "oracle.cise.ufl.edu:1521/orcl"); //Replace USERNAME with your own. Temporarily pulling passwords from form
 		switch($_POST["searchType"])
 		{
-			case "song": $query = ociparse($conn, "SELECT * FROM dballard.songs WHERE title LIKE :search_bv ORDER BY title"); $syntax = "TITLE"; break;
-			case "artist": $query = ociparse($conn, "SELECT * FROM dballard.artists WHERE name LIKE :search_bv"); $syntax = "NAME"; break;
-			case "album": $query = ociparse($conn, "SELECT * FROM dballard.albums WHERE release LIKE :search_bv"); $syntax = "RELEASE"; break;
-			default: $query = ociparse($conn, "SELECT * FROM dballard.songs WHERE :syntax_bv LIKE :search_bv");  $syntax = "TITLE"; break;
+			case "song": $query = ociparse($conn, 
+			"SELECT s.title, a.release FROM dballard.songs s, dballard.albums a WHERE title LIKE :search_bv AND s.album_id = a.album_id ORDER BY title"
+			); break;
+			case "artist": $query = ociparse($conn, "SELECT name FROM dballard.artists WHERE name LIKE :search_bv"); break;
+			case "album": $query = ociparse($conn, "SELECT release FROM dballard.albums WHERE release LIKE :search_bv"); break;
+			default: echo "searchType error"; break;
 		}
 		//oci_bind_by_name($query, ":db_bv", $dB);
 		//oci_bind_by_name($query, ":syntax_bv", $syntax);
@@ -29,10 +31,20 @@
 		
 		//var_dump($fetch);
 		
-		for($row = 0; $row < count($fetch[$syntax]); $row++)
+		switch($_POST["searchType"])
 		{
-			//echo "Name: " . $fetch[$syntax][$row] . "<br>Duration: " . $fetch["DURATION"][$row] . "<br><br>";
-			echo "Name: " . $fetch[$syntax][$row] . "<br>";
+			case "song": 
+				for($row = 0; $row < count($fetch["TITLE"]); $row++)
+					echo "Name: " . $fetch["TITLE"][$row] . "<br>Album: " . $fetch["RELEASE"][$row] . "<br><br>";
+			break;
+			case "artist": 
+				for($row = 0; $row < count($fetch["NAME"]); $row++)
+					echo "Name: " . $fetch["NAME"][$row] . "<br>";
+			break;
+			case "album": 
+				for($row = 0; $row < count($fetch["RELEASE"]); $row++)
+					echo "Name: " . $fetch["RELEASE"][$row] . "<br>";
+			break;
 		}
 	}
 ?>
