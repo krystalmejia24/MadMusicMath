@@ -1,24 +1,26 @@
 #!/usr/local/bin/php
 
+<html>
+<head><h3>Results</h3>
+<body>
+
 <?php
 	if($_POST["searchText"] != null)
 	{
-		$search = $_POST["searchText"];
-		$db; $syntax;
-		switch($_POST["searchType"])
-		{"
-			case "song": $dB = "dballard.song"; $syntax = "name"; break;
-			case "artist": $dB = "dballard.artist"; $syntax = "release"; break;
-			case "album": $dB = "dballard.album"; $syntax = "title"; break;
-		}
-		
+		$search = "'%" + $_POST["searchText"] + "%'";
+		$query = null;
 		putenv("ORACLE_HOME=/usr/local/libexec/oracle11g-client");
-		//Replace USERNAME and PASSWORD with own
-		$conn = ocilogon("USERNAME, $_POST["dbPass"], "oracle.cise.ufl.edu:1521/orcl"); //Replace USERNAME with your own. Temporarily pulling passwords from form
-		$query = ociparse($conn, "SELECT * FROM :db_bv WHERE :syntax_bv = :search_bv");
-		oci_bind_by_name($query, ":db_bv", $db);
-		oci_bind_by_name($query, ":syntax_bv", $syntax);
-		oci_bind_by_name($query, ":search_bv", ("%" + $search + "%");
+		$conn = ocilogon("lorelle", $_POST["dbPass"], "oracle.cise.ufl.edu:1521/orcl"); //Replace USERNAME with your own. Temporarily pulling passwords from form
+		switch($_POST["searchType"])
+		{
+			case "song": $query = ociparse($conn, "SELECT title FROM dballard.songs WHERE title LIKE :search_bv"); break;
+			case "artist": $query = ociparse($conn, "SELECT * FROM dballard.artists WHERE name LIKE :search_bv"); break;
+			case "album": $query = ociparse($conn, "SELECT * FROM dballard.albums WHERE release LIKE :search_bv"); break;
+			default: $query = ociparse($conn, "SELECT * FROM dballard.songs WHERE :syntax_bv LIKE :search_bv"); break;
+		}
+		//oci_bind_by_name($query, ":db_bv", $dB);
+		//oci_bind_by_name($query, ":syntax_bv", $syntax);
+		oci_bind_by_name($query, ":search_bv", $search);
 		ociexecute($query);
 		oci_fetch_all($query, $fetch);
 		oci_free_statement($query);
@@ -27,14 +29,13 @@
 		for($row = 0; $row < count($fetch); $row++)
 		{
 			$dataRow = $fetch[$row];
-			for($column; $column < count($dataRow); $column++)
+			for($column = 0; $column < count($dataRow); $column++)
 			{
-				echo $dataRow[$column];
-			}
+				echo " " + $dataRow[$column] + " ";
+			
+			echo "<br>";
 		}
-
-	} else {
-		 header("Location:index.php");
 	}
-	
 ?>
+</body>
+</html>
