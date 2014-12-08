@@ -20,10 +20,10 @@
 	for($row = 0; $row < count($userData); $row++)
 	{
 		$activeData = $userData[$row];
-		echo $activeData[0];
-		echo $activeData[1];
-		echo $activeData[2];
-		echo $activeData[3];
+		for($column; $column < count($activeData); $column++)
+		{
+			echo $activeData[$column];
+		}
 	}
 ?>
  

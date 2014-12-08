@@ -11,9 +11,10 @@
 	<a href="user.php">User $COOKIE["user"] Info</a>
 <?php endif; ?>
 <br><br>
-<form action="searchLogic.php" method="post">
+<form action="searchResults.php" method="post">
 Search: <input type = "text" name="searchText"><br>
-Song: <input type = "radio" name="searchType" value="song">   Artist: <input type = "radio" name="searchType" value="artist">   Album: <input type = "searchType" name="type" value="album"><br>
+Song: <input type = "radio" name="searchType" value="song">   Artist: <input type = "radio" name="searchType" value="artist">   Album: <input type = "radio" name="searchType" value="album"><br>
+dbPass: <input type = "password" name="dbPass"><br>
 <input type="submit">
 </form>
 
