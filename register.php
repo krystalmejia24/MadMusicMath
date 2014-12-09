@@ -16,7 +16,7 @@
 <tr>
 <td>Password</td>
 <td>:</td>
-<td><input name="password" type="text" id="password" maxlength="128" pattern=".{6,}" required title="6 characters minimum"></td>
+<td><input name="password" type="password" id="password" maxlength="128" pattern=".{6,}" required title="6 characters minimum"></td>
 </tr>
 <tr>
 <td>Country</td>
