@@ -2,7 +2,7 @@
 <!-- userSearch gets passed through POST 'searchText' and 'searchType' -->
 
 <html>
-<head><h3>Home Page</h3>
+<head><h3>Home Page</h3></head>
 <body>
 
 <?php if(!isset($_COOKIE["user"]) || $_COOKIE["user"] == null): ?>

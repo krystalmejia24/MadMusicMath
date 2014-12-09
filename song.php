@@ -1,7 +1,7 @@
 #!/usr/local/bin/php
 
 <html>
-<head><h3>Results</h3>
+<head><h3>Song</h3></head>
 <body>
 
 <?php
@@ -21,7 +21,8 @@
 		
 		//var_dump($fetch);
 		
-		echo "Name: " . $fetch["TITLE"][0] . "<br>Album: " . $fetch["RELEASE"][0] . " " . $fetch["DURATION"][0] . "<br><br>";
+		echo "Name: " . $fetch["TITLE"][0] . "<br>Album: " . $fetch["RELEASE"][0] . "<br>Duration: " . $fetch["DURATION"][0] . "<br>";
+		echo "Tempo: " . $fetch["TEMPO"][0];
 	}
 ?>
 </body>

@@ -1,7 +1,7 @@
 #!/usr/local/bin/php
 
 <html>
-<head><h3>Results</h3>
+<head><h3>Results</h3></head>
 <body>
 
 <?php
