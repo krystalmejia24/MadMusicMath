@@ -28,6 +28,5 @@ else {
 
 oci_free_statement($search);
 ocilogoff($conn);
-oci_close($conn);
 
 ?>

@@ -12,6 +12,6 @@ if(!session_is_registered(username)){
 <h1>Welcome!</h1>
 <b>Login Successful!</b>
 <br>Will redirect back to the home page in 3 seconds.<br>
-<meta http-equiv="refresh" content="3;url=home.php" />
+<meta http-equiv="refresh" content="3;url=index.php" />
 </body>
 </html>
