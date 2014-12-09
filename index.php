@@ -4,12 +4,15 @@
 <html>
 <head><h3>Home Page</h3></head>
 <body>
-
-<?php if(!isset($_COOKIE["user"]) || $_COOKIE["user"] == null): ?>
-	<a href="userLogin.php">User Login</a>
-<?php else: ?>
-	<a href="user.php">User $COOKIE["user"] Info</a>
-<?php endif; ?>
+<?php 
+session_start();
+if(!session_is_registered("username")) {
+	echo "<a href='login.php'>User Login</a>";
+} else {
+	$user = $_SESSION['username'];
+	echo "<a href='user.php'>User $user Info</a>";
+} 
+?>
 <br><br>
 <form action="searchResults.php" method="post">
 Search: <input type = "text" name="searchText"><br>

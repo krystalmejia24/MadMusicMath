@@ -9,5 +9,5 @@ print "Logout Successful";
 ?>
 
 <br>Will redirect back to the home page in 3 seconds.<br>
-<meta http-equiv="refresh" content="3;url=home.php" />
+<meta http-equiv="refresh" content="3;url=index.php" />
 </body></html>
