@@ -1,8 +1,21 @@
 #!/usr/local/bin/php
 
 <html>
-<head><h3>Artist</h3></head>
+<title>Mad Music Math</title>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>	
 <body>
+<div id="wrap">
+   <h1>Artist</h1>
+   
+   <!-- Here's all it takes to make this navigation bar. -->
+   <ul id="nav">
+      <li><a href="index.php">Home</a></li>
+      <li><a href="user.php">Profile</a></li>
+      <li><a href="login.php">Login</a></li>
+    
+   </ul>
 
 <?php
 	if($_GET["id"] != null)
@@ -28,5 +41,6 @@
 
 	}
 ?>
+</div>
 </body>
 </html>

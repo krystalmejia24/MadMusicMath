@@ -1,8 +1,21 @@
 #!/usr/local/bin/php
-
+	
 <html>
-<head><h3>Album</h3></head>
+<title>Mad Music Math</title>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>	
 <body>
+<div id="wrap">
+   <h1>Album</h1>
+   
+   <!-- Here's all it takes to make this navigation bar. -->
+   <ul id="nav">
+      <li><a href="index.php">Home</a></li>
+      <li><a href="user.php">Profile</a></li>
+      <li><a href="login.php">Login</a></li>
+     
+   </ul>
 
 <?php
 	if($_GET["id"] != null)
@@ -22,7 +35,7 @@
 		oci_free_statement($query);
 		
 		
-		echo "Album: " . $fetch["RELEASE"][0] . "<br>Year: " . $fetch["RELEASE_DATE"][0] . "<br><br>";
+		echo "<b>Album: </b>" . $fetch["RELEASE"][0] . "<br>Year: " . $fetch["RELEASE_DATE"][0] . "<br><br>";
 		$address1 = "artist.php?id=" . $fetch["ARTIST_ID"][0];
 		echo "<b>Artist:</b><a href=$address1> " . $fetch["NAME"][0] ."</a><br>";
 	}
@@ -37,7 +50,7 @@
 		oci_fetch_all($songs, $fetch1);
 		ocilogoff($conn);
 		
-		echo "<br><b>Songs</b><br>"; 
+		echo "<br><b>Songs:</b><br>"; 
 		for($row = 0; $row < count($fetch1["TITLE"]); $row++)
 		{
 			$address = "song.php?id=" . $fetch1["SONG_ID"][$row];
@@ -46,6 +59,6 @@
 			echo ": <a href=$address>" . $fetch1["TITLE"][$row] . "</a><br>";
 		}
 ?>
-
+</div>
 </body>
 </html>

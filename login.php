@@ -1,4 +1,23 @@
 #!/usr/local/bin/php
+<html>
+<title>Mad Music Math</title>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+
+<body>
+<div id="wrap">
+   <h1>Login</h1>
+   
+   <!-- Here's all it takes to make this navigation bar. -->
+   <ul id="nav">
+      <li><a href="index.php">Home</a></li>
+      <li><a href="user.php">Profile</a></li>
+      <li><a href="login.php">Login</a></li>
+      
+   </ul>
+   <!-- That's it! -->
 
 <table width="300" border="1" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
   <tr>
@@ -27,3 +46,6 @@
     </form>
   </tr>
 </table>
+</div>
+</body>
+</html>
