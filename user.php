@@ -17,14 +17,7 @@
 		//error message
 	 }
 	$userData = userInfo($_COOKIE["user"]);
-	for($row = 0; $row < count($userData); $row++)
-	{
-		$activeData = $userData[$row];
-		for($column; $column < count($activeData); $column++)
-		{
-			echo $activeData[$column];
-		}
-	}
+	echo $userData["USERNAME"][0] . " " . $userData["COUNTRY"][0] . " " . $userData["CITY"][0] . "<br>";
 ?>
  
  </body>
