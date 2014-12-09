@@ -1,0 +1,3 @@
+		$query = ociparse("UPDATE dballard.albums SET page_visit = (page_visit + 1) WHERE album_id = :search_bv");
+		oci_bind_by_name($query, ":search_bv", $albumID);
+		ociexecute($query);
