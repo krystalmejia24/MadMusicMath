@@ -14,7 +14,7 @@
 		switch($_POST["searchType"])
 		{
 			case "song": $query = ociparse($conn, 
-			"SELECT s.title, s.song_id, a.release FROM dballard.songs s, dballard.albums a WHERE title LIKE :search_bv AND s.album_id = a.album_id ORDER BY title"
+			"SELECT title, song_id FROM dballard.songs WHERE title LIKE :search_bv ORDER BY title"
 			); break;
 			case "artist": $query = ociparse($conn, "SELECT name FROM dballard.artists WHERE name LIKE :search_bv"); break;
 			case "album": $query = ociparse($conn, "SELECT release FROM dballard.albums WHERE release LIKE :search_bv"); break;
@@ -34,7 +34,9 @@
 				for($row = 0; $row < count($fetch["TITLE"]); $row++)
 				{
 					$address = "song.php?id=" . $fetch["SONG_ID"][$row];
-					echo "Name: " . $fetch["TITLE"][$row] . "<br>Album: " . $fetch["RELEASE"][$row] . "<br><a href=$address>More Info</a><br><br>";
+					$title = $fetch["TITLE"][$row];
+					//echo "Name: " . $fetch["TITLE"][$row] . "<br>Album: " . $fetch["RELEASE"][$row] . "<br><a href=$address>More Info</a><br><br>";
+					echo "<a href=$address>$title</a><br>";
 				}
 			break;
 			case "artist": 
